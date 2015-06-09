@@ -41,11 +41,20 @@ public class Adherent {
         this.Profession = Profession;
         this.Age = Age;
         this.Livres = new ArrayList<Livre>();
-         this.Empruntencours = this.Livres.size();
+        this.Empruntencours = this.Livres.size();
+    }
+
+    public Adherent() {
+        this.Nom = "Kayonga";
+        this.Prenom = "Earvin";
+        this.Mail = "demoneartin@gmail.com";
+        this.Adresse = "14 Rue de la Paix MonopolyVille ";
+        this.Profession = "Développeur";
+        this.Age = 23;
+        this.Livres = new ArrayList<Livre>();
+        this.Empruntencours = this.Livres.size();
     }
     
-    
-
     /**
      * @return the Nom
      */
@@ -138,7 +147,7 @@ public class Adherent {
     }
 
     /**
-     * @param Livre the Livre to set
+     * @param Livres
      */
     public void setLivre(ArrayList<Livre> Livres) {
         this.Livres = Livres;
