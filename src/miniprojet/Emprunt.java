@@ -5,6 +5,8 @@
  */
 package miniprojet;
 
+import java.util.Date;
+
 /**
  *
  * @author PapiMartial
@@ -12,8 +14,15 @@ package miniprojet;
 public class Emprunt {
     private Adherent emprunteur;
     private Livre livre;
+    private Date date;
 
     public Emprunt(Adherent emprunteur, Livre livre) {
+        this.emprunteur = emprunteur;
+        this.livre = livre;
+        this.emprunteur.getLivres().add(livre);
+    }
+      public Emprunt(Adherent emprunteur, Livre livre,Date date) {
+         this.date = date;
         this.emprunteur = emprunteur;
         this.livre = livre;
         this.emprunteur.getLivres().add(livre);
@@ -21,7 +30,7 @@ public class Emprunt {
 
     @Override
     public String toString() {
-        return " { Emprunt : "+ this.emprunteur.toString() + " emprunte "+ this.livre.toString() +" }";
+        return " { Emprunt : "+ this.emprunteur.toString() + " emprunte "+ this.livre.toString() + " le " + this.getDate() +" }";
     }
     
     
@@ -51,6 +60,13 @@ public class Emprunt {
      */
     public void setLivre(Livre livre) {
         this.livre = livre;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
     }
     
     
