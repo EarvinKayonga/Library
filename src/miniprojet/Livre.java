@@ -132,10 +132,16 @@ public class Livre {
     public String getCode() {
         return this.theme.toString() + this.numero;
     }
+    
+    public boolean isEmpruntable(){
+        return this.nbexemplaires >= 0;
+    }
 
     @Override
     public String toString() {
         return "{ Livre : " + "Titre : " + this.getTitre() + " Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
     }
+    
+    
 
 }

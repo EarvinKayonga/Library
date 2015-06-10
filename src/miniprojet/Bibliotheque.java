@@ -5,77 +5,211 @@
  */
 package miniprojet;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author PapiMartial
  */
-public class Bibliotheque implements Serializable , Mediatheque{
+public class Bibliotheque implements Serializable, Mediatheque {
 
-    @Override
-    public void afficherAdherents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private ArrayList<Adherent> adherents;
+    private ArrayList<Livre> livres;
+    private ArrayList<Emprunt> emprunts;
+
+    public Bibliotheque() {
+        this.adherents = new ArrayList<Adherent>();
+        this.livres = new ArrayList<Livre>();
+        this.emprunts = new ArrayList<Emprunt>();
     }
 
+    public Bibliotheque(boolean val) throws FileNotFoundException, IOException, ClassNotFoundException  {
+        //load from a file
+        ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream("bibliotheque.txt"));
+        Object t = in.readObject();
+        if (t instanceof Bibliotheque) {
+             Bibliotheque b= (Bibliotheque) t;
+             new  Bibliotheque(b.getAdherents(), b.getLivres(), b.getEmprunts());
+        } else {
+            System.out.println("Erreur");
+        }
+        in.close();
+        
+        
+    }
+
+    public Bibliotheque(ArrayList<Adherent> adherents, ArrayList<Livre> livres, ArrayList<Emprunt> emprunts) {
+        this.adherents = adherents;
+        this.livres = livres;
+        this.emprunts = emprunts;
+    }
+    
+    
+
     @Override
-    public void afficheLivres() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void recherche() {
+
+    }
+
+    public void updateLivre(Livre a) {
+
+    }
+
+    public void updateAdherent(Adherent a) {
+
     }
 
     @Override
     public void afficheLecteursEnRetard() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
-    public void recherche() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void afficheLivres() {
+
+    }
+
+    @Override
+    public void afficherAdherents() {
+
     }
 
     @Override
     public void afficheDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Date date = new Date();
     }
 
     @Override
-    public void ajoutAdherent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void ajoutAdherent(Adherent b) {
+        if (!this.adherents.contains(b)) {
+            this.getAdherents().add(b);
+            try {
+                this.save();
+            } catch (IOException ex) {
+                Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
     }
 
     @Override
-    public void ajoutLivre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void ajoutLivre(Livre b) {
+        if (!this.livres.contains(b)) {
+            this.getLivres().add(b);
+            try {
+                this.save();
+            } catch (IOException ex) {
+                Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
     }
 
     @Override
-    public void supprAdherent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void supprAdherent(Adherent a) {
+        if (this.getAdherents().contains(a)) {
+            this.getAdherents().remove(a);
+            try {
+                this.save();
+            } catch (IOException ex) {
+                Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
     }
 
     @Override
-    public void supprLivre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void supprLivre(Livre a) {
+        if (this.getLivres().contains(a)) {
+            this.getLivres().remove(a);
+            try {
+                this.save();
+            } catch (IOException ex) {
+                Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
     }
 
     @Override
-    public void emprunt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void emprunt(Livre a, Adherent b) {
+        if (!this.adherents.contains(b)) {
+            this.ajoutAdherent(b);
+        } else if (!a.isEmpruntable()) {
+            return;
+        }
+        this.getEmprunts().add(new Emprunt(b, a));
+        try {
+            this.save();
+        } catch (IOException ex) {
+            Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
-    public void rendre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void rendre(Livre a, Adherent b) {
+        Emprunt t = null;
+        for (Emprunt cmp : this.getEmprunts()) {
+            if ((cmp.getLivre() == a) && (cmp.getEmprunteur() == b)) {
+                t = cmp;
+            }
+        }
+        if (t == null) {
+            return;
+        } else {
+            t.getLivre().setNbexemplairedispo(t.getLivre().getNbexemplairedispo() + 1);
+            this.getEmprunts().remove(t);
+        }
+        try {
+            this.save();
+        } catch (IOException ex) {
+            Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
-    @Override
-    public void updateLivre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void save() throws FileNotFoundException, IOException {
+        ObjectOutputStream output = new ObjectOutputStream(
+                new FileOutputStream("bibliotheque.txt"));
+        output.writeObject(this);
+
+        output.close();
     }
 
-    @Override
-    public void updateAdherent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @return the adherents
+     */
+    public ArrayList<Adherent> getAdherents() {
+        return adherents;
     }
-    
+
+    /**
+     * @return the livres
+     */
+    public ArrayList<Livre> getLivres() {
+        return livres;
+    }
+
+    /**
+     * @return the emprunts
+     */
+    public ArrayList<Emprunt> getEmprunts() {
+        return emprunts;
+    }
+
 }
