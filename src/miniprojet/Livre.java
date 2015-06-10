@@ -15,7 +15,7 @@ public class Livre {
     private String auteur;
     private String theme;
     private int numero;
-    private int nbexemplaires;
+        private int nbexemplaires;
     private int nbexemplairedispo;
 
     public Livre(String titre, String auteur, String theme, int numero, int nbexemplaires, int nbexemplairedispo) {
@@ -139,8 +139,12 @@ public class Livre {
 
     @Override
     public String toString() {
-        return "{ Livre : " + "Titre : " + this.getTitre() + " Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
-    }
+        if(this.isEmpruntable()){
+               return "{ Livre : "  + " disponible " + "Titre : " + this.getTitre() + " Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
+        }else{
+               return "{ Livre : "  + " non disponible " + "Titre : " + this.getTitre() + " Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
+        }
+     }
     
     
 

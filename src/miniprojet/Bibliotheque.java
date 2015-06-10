@@ -190,6 +190,10 @@ public class Bibliotheque implements Serializable, Mediatheque {
 
         output.close();
     }
+    
+    public void send(){
+        
+    }
 
     /**
      * @return the adherents
