@@ -5,13 +5,14 @@
  */
 package miniprojet;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author PapiMartial
  */
-public class Adherent {
+public class Adherent implements Serializable {
     private String Nom ;
     private String Prenom;
     private String Mail;
@@ -53,6 +54,11 @@ public class Adherent {
         this.Age = 23;
         this.Livres = new ArrayList<Livre>();
         this.Empruntencours = this.Livres.size();
+    }
+    
+    public void addLivre(Livre a){
+        this.Livres.add(a);
+        this.Empruntencours ++;
     }
     
     /**
@@ -155,10 +161,10 @@ public class Adherent {
 
     @Override
     public String toString() {
-        if(this.Empruntencours <1){
-            return "{ Adherent :  "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+ " "+ this.getEmpruntencours() +" Emprunts " + " Mail : " + this.getMail() + " Adresse : " + this.Adresse +    "}";
+        if(!(this.Empruntencours <1)){
+            return "{ Adherent : "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+ " "+ this.getEmpruntencours() +" emprunts, " + " Mail : " + this.getMail() + ", Adresse : " + this.Adresse +    "}";
         }
-        return "{ Adherent :  "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+  " Pas d'Emprunt " + " Mail : " + this.getMail() + " Adresse : " + this.Adresse +    "}";
+        return "{ Adherent : "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+  ", Pas d'emprunts, " + "Mail : " + this.getMail() + ", Adresse : " + this.Adresse +    " }";
     }
 
     /**

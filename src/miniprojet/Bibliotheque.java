@@ -40,7 +40,9 @@ public class Bibliotheque implements Serializable, Mediatheque {
         Object t = in.readObject();
         if (t instanceof Bibliotheque) {
              Bibliotheque b= (Bibliotheque) t;
-             new  Bibliotheque(b.getAdherents(), b.getLivres(), b.getEmprunts());
+             this.adherents = b.getAdherents();
+             this.livres = b.getLivres();
+             this.emprunts = b.getEmprunts();
         } else {
             System.out.println("Erreur");
         }
@@ -62,12 +64,14 @@ public class Bibliotheque implements Serializable, Mediatheque {
 
     }
 
-    public void updateLivre(Livre a) {
-
+    public void updateLivre(Livre a,Livre old) {
+        int index = this.livres.indexOf(old);
+        this.livres.add(index, a);
     }
 
-    public void updateAdherent(Adherent a) {
-
+    public void updateAdherent(Adherent nouveau, Adherent old ) {
+        int index = this.adherents.indexOf(old);
+        this.adherents.add(index, nouveau);
     }
 
     @Override
@@ -153,7 +157,10 @@ public class Bibliotheque implements Serializable, Mediatheque {
         } else if (!a.isEmpruntable()) {
             return;
         }
+        b = this.adherents.get(this.adherents.indexOf(b));
+        b.addLivre(a);
         this.getEmprunts().add(new Emprunt(b, a));
+        
         try {
             this.save();
         } catch (IOException ex) {
@@ -215,5 +222,29 @@ public class Bibliotheque implements Serializable, Mediatheque {
     public ArrayList<Emprunt> getEmprunts() {
         return emprunts;
     }
+
+    @Override
+    public String toString() {
+        String tmp = "Bibliotheque {  " + "\n";
+        tmp += "Livres [ ";
+        for(Livre a : this.livres){
+            tmp += a.toString()+ "\n";
+        }
+        tmp += " ]"+ "\n";
+        tmp += "Adherents [";
+        for(Adherent a : this.adherents){
+            tmp += a.toString()+ "\n";
+        }
+        tmp += "] "+"\n";
+        tmp += "Emprunts [";
+        for(Emprunt a : this.emprunts){
+            tmp += a.toString()+ "\n";
+        }
+        tmp += "] "+"\n";
+        tmp += " } " ;
+        return tmp; 
+    }
+    
+    
 
 }

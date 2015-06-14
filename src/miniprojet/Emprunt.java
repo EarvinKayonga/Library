@@ -5,13 +5,14 @@
  */
 package miniprojet;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author PapiMartial
  */
-public class Emprunt {
+public class Emprunt implements Serializable{
 
     private Adherent emprunteur;
     private Livre livre;
@@ -38,7 +39,7 @@ public class Emprunt {
 
     @Override
     public String toString() {
-        return " { Emprunt : " + this.emprunteur.toString() + " emprunte " + this.livre.toString() + " le " + this.getDate() + " }";
+        return " { Emprunt : " + this.emprunteur.toString() + " a emprunté " + this.livre.toString() + " le " + this.getDate() + " }";
     }
 
     /**

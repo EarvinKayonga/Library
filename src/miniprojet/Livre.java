@@ -5,11 +5,13 @@
  */
 package miniprojet;
 
+import java.io.Serializable;
+
 /**
  *
  * @author PapiMartial
  */
-public class Livre {
+public class Livre implements Serializable{
 
     private String titre;
     private String auteur;
@@ -130,7 +132,7 @@ public class Livre {
     }
 
     public String getCode() {
-        return this.theme.toString() + this.numero;
+        return this.theme.toString() +"-" + this.numero;
     }
     
     public boolean isEmpruntable(){
@@ -140,9 +142,9 @@ public class Livre {
     @Override
     public String toString() {
         if(this.isEmpruntable()){
-               return "{ Livre : "  + " disponible " + "Titre : " + this.getTitre() + " Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
+               return "{ Livre : "  + " disponible " + "Titre : " + this.getTitre() + ", Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
         }else{
-               return "{ Livre : "  + " non disponible " + "Titre : " + this.getTitre() + " Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
+               return "{ Livre : "  + " non disponible " + "Titre : " + this.getTitre() + ", Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
         }
      }
     

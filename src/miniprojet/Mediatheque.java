@@ -20,8 +20,8 @@ public interface Mediatheque {
     public void supprLivre( Livre b);
     public void emprunt(Livre a, Adherent b);
     public void rendre(Livre a, Adherent b);
-    public void updateLivre(Livre a);
-    public void updateAdherent(Adherent a);
+    public void updateLivre(Livre a,Livre old);
+    public void updateAdherent(Adherent a, Adherent old);
     
     
 }
