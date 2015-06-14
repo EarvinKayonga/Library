@@ -170,6 +170,31 @@ public class Bibliotheque implements Serializable, Mediatheque {
             Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void emprunt(Livre a, Adherent b, Date c) {
+        if (!this.adherents.contains(b)) {
+            this.ajoutAdherent(b);
+        } else if (!a.isEmpruntable()) {
+            return;
+        }
+        b = this.adherents.get(this.adherents.indexOf(b));
+        boolean t =false;
+        for(Emprunt d :this.emprunts){
+            if(d.equals(new Emprunt(b, a) )){
+                t =true;
+            }
+        }
+        if(!t){
+            b.addLivre(a);
+            this.getEmprunts().add(new Emprunt(b, a, c));
+        }
+        
+        try {
+            this.save();
+        } catch (IOException ex) {
+            Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public void rendre(Livre a, Adherent b) {

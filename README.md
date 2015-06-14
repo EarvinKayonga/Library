@@ -1,13 +1,13 @@
 # Projet Library
 Java project for School
 
-Setup.
+I Mise en route
 
 git clone https://github.com/EarvinKayonga/Library.git ou  allez  à https://codeload.github.com/EarvinKayonga/Library/zip/master  pour telecharger les sources
 Ensuite ouvrir avec netbeans ou eclipse
 
 
-I - Implementation
+II - Implementation
 
 Cette implementation d'une bibliothèque comporte 4 classes et 1 interfaces :
 
@@ -64,11 +64,12 @@ Une interface publique Mediatheque :
     - supprAdherent(Adherent b),
     - supprLivre( Livre b),
     - emprunt(Livre a, Adherent b),
+    - emprunt(Livre a, Adherent b,Date c), Avec une date différée
     - rendre(Livre a, Adherent b),
-    - updateLivre(Livre a),
-    - updateAdherent(Adherent a),
+    - updateLivre(Livre new, Livre old),
+    - updateAdherent(Adherent new,Livre old),
 
-II - Insuffisances et Améliorations possibles
+III - Insuffisances et Améliorations possibles
 
 1) Défauts
 
