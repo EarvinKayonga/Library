@@ -1,7 +1,7 @@
 # Projet Library
 Java project for School
 
-I - Implementaion
+I - Implementation
 
 Cette implementation d'une bibliothèque comporte 4 classes et 1 interfaces :
 
@@ -9,37 +9,44 @@ Une instance de la classe Adherent peut emprunter et rendre des instances de Liv
 Voici un petit descriptif du diagramme de classe
 
 Une classe Adherent ( Nom, Prenom, Mail, adresse, ...) :
-  
+
     Methodes:
     - getters, setters,toString,
 
 
 Une classe Livre ( Titre, Auteur, Theme, Numero, Nombre d'exemplaires, Nombre d'exemplaire disponibles) :
- 
+
     Methodes:
     - getters, setters,toString,
     - Code : theme + Numero,
 
-  
+
 Une classe Emprunt ( Emprunteur, Livre, Date ) :
-  
+
     Methodes:
     - getters, setters, toString,
-  
+
 
 
 Une classe Bibliotheque ( Liste des Adherents, Liste des emprunts, Liste des Livres) :
     Cette classe est Serializable, et implemente l'interface Mediatheque
-    
+
     Methodes:
     - getters, setters, toString, les fonctions de l'interface Mediatheque,
     - save ( methodes que ecrit l'instance en cours dans un fichier "bibliotheqe.txt" dans le dossier racine),
     - Constructeur particulier qui permet de charger une instance de la classe Bibliotheque à partir d'un fichier : Bibliotheque(boolean r)
 
+    - afficheDate(), Affiche la date Courant
+    - ByName(), Affiche la liste des Adherents par ordre alphabétique
+    - ByTitre(), Affiche la liste des livres par titre par ordre alphabétique
+    - ByAuteur(),  Affiche la liste des livres par auteur par ordre alphabétique
+    - ByCode(),   Affiche la liste des livres par code par ordre alphabétique
+    - afficheLecteursEnRetard()  Affiche la liste des adherents en retard
+
 Une interface publique Mediatheque :
-    
+
     Méthodes:
-    - afficherAdherents(), 
+    - afficherAdherents(),
     - afficheLivres(),
     - afficheLecteursEnRetard(),
     - recherche(),
@@ -52,8 +59,8 @@ Une interface publique Mediatheque :
     - rendre(Livre a, Adherent b),
     - updateLivre(Livre a),
     - updateAdherent(Adherent a),
-    
-II - Insuffisances et Améliorations possibles 
+
+II - Insuffisances et Améliorations possibles
 
 1) Défauts
 
@@ -73,10 +80,3 @@ Ce système de stockage est très discutable:
 Les fichiers de stockage devraient être en sécurité sur un serveur avec de la persistance via JPA.
 Le multiposte sera possible et le multithreading sera demandé du coté server.
 Un service Web est mieux adapté pour ce projet.
-
-
-
-
-
-
-    

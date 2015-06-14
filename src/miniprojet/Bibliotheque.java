@@ -81,17 +81,17 @@ public class Bibliotheque implements Serializable, Mediatheque {
 
     @Override
     public void afficheLivres() {
-
+        System.out.println( "La Liste des livres : "+this.livres);
     }
 
     @Override
     public void afficherAdherents() {
-
+        System.out.println( "La Liste des adhérents : "+this.adherents);
     }
 
     @Override
     public void afficheDate() {
-        Date date = new Date();
+        System.out.println("La date courante :" +new Date());
     }
 
     @Override
@@ -226,17 +226,17 @@ public class Bibliotheque implements Serializable, Mediatheque {
     @Override
     public String toString() {
         String tmp = "Bibliotheque {  " + "\n";
-        tmp += "Livres [ ";
+        tmp += "Livres [ " + "\n";
         for(Livre a : this.livres){
             tmp += a.toString()+ "\n";
         }
         tmp += " ]"+ "\n";
-        tmp += "Adherents [";
+        tmp += "Adherents [" + "\n";
         for(Adherent a : this.adherents){
             tmp += a.toString()+ "\n";
         }
         tmp += "] "+"\n";
-        tmp += "Emprunts [";
+        tmp += "Emprunts [" + "\n";
         for(Emprunt a : this.emprunts){
             tmp += a.toString()+ "\n";
         }

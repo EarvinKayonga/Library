@@ -54,8 +54,20 @@ public class Miniprojet {
         
         
         
+        /*
+        Bibliotheque example = new Bibliotheque(true);
+        example.afficheDate();
+        example.ByName();
+        example.ByTitre();
+        example.ByAuteur();
+        example.ByCode();
+        example.afficheLecteursEnRetard();
+        example.ajoutAdherent(new Adherent("Hawk","Ethan","ethan@gmail.com","acteur","35 rue Louis Valtics Paris", 53));
+        example.ajoutLivre(new Livre("Les rivales", "Michel Peyramaure", "ROM", 225, 5));
         
-        /*Bibliotheque example = new Bibliotheque(true);
+        // Mathieu emprunte le livre L'Assomoir de Zola
+        example.emprunt(example.getLivres().get(0), example.getAdherents().get(4));
+        
         System.out.print(example);*/
                 
                 

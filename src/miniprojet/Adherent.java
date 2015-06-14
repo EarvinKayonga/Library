@@ -162,7 +162,7 @@ public class Adherent implements Serializable {
     @Override
     public String toString() {
         if(!(this.Empruntencours <1)){
-            return "{ Adherent : "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+ " "+ this.getEmpruntencours() +" emprunts, " + " Mail : " + this.getMail() + ", Adresse : " + this.Adresse +    "}";
+            return "{ Adherent : "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+ ", "+ this.getEmpruntencours() +" emprunts, " + " Mail : " + this.getMail() + ", Adresse : " + this.Adresse +    "}";
         }
         return "{ Adherent : "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+  ", Pas d'emprunts, " + "Mail : " + this.getMail() + ", Adresse : " + this.Adresse +    " }";
     }
