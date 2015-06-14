@@ -6,12 +6,13 @@
 package miniprojet;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  *
  * @author PapiMartial
  */
-public class Livre implements Serializable{
+public class Livre implements Serializable, Comparable{
 
     private String titre;
     private String auteur;
@@ -147,7 +148,35 @@ public class Livre implements Serializable{
                return "{ Livre : "  + " non disponible " + "Titre : " + this.getTitre() + ", Auteur : " + this.getAuteur() + " Code : " + this.getCode() + " }";
         }
      }
+
+    @Override
+    public int compareTo(Object o) {
+         return Livre.Comparators.TITRE.compare(this, (Livre) o);
+    }
     
     
+    public static class Comparators {
+
+        public static Comparator<Livre> TITRE= new Comparator<Livre>() {
+
+            public int compare(Livre o1, Livre o2) {
+                return o1.titre.compareTo(o2.titre);
+            }
+        };
+        
+        public static Comparator<Livre> AUTEUR= new Comparator<Livre>() {
+
+            public int compare(Livre o1, Livre o2) {
+                return o1.auteur.compareTo(o2.auteur);
+            }
+        };
+        
+         public static Comparator<Livre> CODE= new Comparator<Livre>() {
+
+            public int compare(Livre o1, Livre o2) {
+                return o1.getCode().compareTo(o2.getCode());
+            }
+        };
+    }
 
 }

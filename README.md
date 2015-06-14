@@ -3,7 +3,8 @@ Java project for School
 
 I Mise en route
 
-git clone [https://github.com/EarvinKayonga/Library.git](https://github.com/EarvinKayonga/Library.git) ou  allez  à [https://codeload.github.com/EarvinKayonga/Library/zip/master](https://codeload.github.com/EarvinKayonga/Library/zip/master)  pour telecharger les sources Ensuite ouvrir avec netbeans ou eclipse
+git clone [https://github.com/EarvinKayonga/Library.git](https://github.com/EarvinKayonga/Library.git) ou  allez  à [https://codeload.github.com/EarvinKayonga/Library/zip/master](https://codeload.github.com/EarvinKayonga/Library/zip/master)  pour telecharger les sources.
+ Ensuite ouvrir avec netbeans ou eclipse
 
 II - Implementation
 

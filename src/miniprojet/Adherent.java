@@ -7,13 +7,15 @@ package miniprojet;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  *
  * @author PapiMartial
  */
-public class Adherent implements Serializable {
-    private String Nom ;
+public class Adherent implements Serializable, Comparable {
+
+    private String Nom;
     private String Prenom;
     private String Mail;
     private String Profession;
@@ -22,20 +24,20 @@ public class Adherent implements Serializable {
     private int Empruntencours;
     private ArrayList<Livre> Livres;
 
-    public Adherent(String Nom, String Prenom, String Mail, String Profession, int Age, String Adresse,  int Empruntencours, ArrayList<Livre> Livres) {
+    public Adherent(String Nom, String Prenom, String Mail, String Profession, int Age, String Adresse, int Empruntencours, ArrayList<Livre> Livres) {
         this.Nom = Nom;
         this.Prenom = Prenom;
         this.Mail = Mail;
         this.Profession = Profession;
-         this.Adresse = Adresse;
+        this.Adresse = Adresse;
         this.Age = Age;
-         this.Livres = Livres;
+        this.Livres = Livres;
         this.Empruntencours = this.Livres.size();
-       
+
     }
 
     public Adherent(String Nom, String Prenom, String Mail, String Profession, String Adresse, int Age) {
-         this.Nom = Nom;
+        this.Nom = Nom;
         this.Prenom = Prenom;
         this.Mail = Mail;
         this.Adresse = Adresse;
@@ -55,12 +57,12 @@ public class Adherent implements Serializable {
         this.Livres = new ArrayList<Livre>();
         this.Empruntencours = this.Livres.size();
     }
-    
-    public void addLivre(Livre a){
+
+    public void addLivre(Livre a) {
         this.Livres.add(a);
-        this.Empruntencours ++;
+        this.Empruntencours++;
     }
-    
+
     /**
      * @return the Nom
      */
@@ -161,10 +163,10 @@ public class Adherent implements Serializable {
 
     @Override
     public String toString() {
-        if(!(this.Empruntencours <1)){
-            return "{ Adherent : "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+ ", "+ this.getEmpruntencours() +" emprunts, " + " Mail : " + this.getMail() + ", Adresse : " + this.Adresse +    "}";
+        if (!(this.Empruntencours < 1)) {
+            return "{ Adherent : " + "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom() + ", " + this.getEmpruntencours() + " emprunts, " + " Mail : " + this.getMail() + ", Adresse : " + this.Adresse + "}";
         }
-        return "{ Adherent : "+  "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom()+  ", Pas d'emprunts, " + "Mail : " + this.getMail() + ", Adresse : " + this.Adresse +    " }";
+        return "{ Adherent : " + "Nom : " + this.getNom() + ", Prenom : " + this.getPrenom() + ", Pas d'emprunts, " + "Mail : " + this.getMail() + ", Adresse : " + this.Adresse + " }";
     }
 
     /**
@@ -180,11 +182,22 @@ public class Adherent implements Serializable {
     public void setAdresse(String Adresse) {
         this.Adresse = Adresse;
     }
+
+  
+    public int compareTo(Object o) {
+        return Comparators.NOM.compare(this, (Adherent) o);
+    }
+
     
-    
-    
-    
-    
-    
-    
+
+    public static class Comparators {
+
+        public static Comparator<Adherent> NOM = new Comparator<Adherent>() {
+
+            public int compare(Adherent o1, Adherent o2) {
+                return o1.Nom.compareTo(o2.Nom);
+            }
+        };
+    }
+
 }

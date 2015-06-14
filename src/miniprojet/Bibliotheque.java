@@ -5,6 +5,7 @@
  */
 package miniprojet;
 
+import static com.oracle.jrockit.jfr.ContentType.Timestamp;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,7 +13,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -273,24 +276,48 @@ public class Bibliotheque implements Serializable, Mediatheque {
     
     @Override
     public void afficheLecteursEnRetard() {
-
+        ArrayList<Emprunt> ret = new ArrayList<>();
+        for(Emprunt a:this.emprunts){
+            Date date = new Date();
+            if( true){
+                ret.add(a);
+            }
+        }
+        String tmp = " Les Lecteurs en Retards sont : ";
+        for(Emprunt a : this.emprunts){
+            tmp += a.getEmprunteur().toString();
+        }
+        //System.out.print(tmp);
     }
     
     public void ByName(){
-        
+        ArrayList<Adherent> tmp = this.adherents;
+        Collections.sort(tmp,Adherent.Comparators.NOM);
+        System.out.print(tmp);
     }
     
     public void ByTitre(){
-        
+        ArrayList<Livre> tmp = this.livres;
+        Collections.sort(tmp,Livre.Comparators.TITRE);
+        System.out.print(tmp);
     }
     
     public void ByAuteur(){
-        
+         ArrayList<Livre> tmp = this.livres;
+        Collections.sort(tmp,Livre.Comparators.AUTEUR);
+        System.out.print(tmp);
     }
     
     public void ByCode(){
-        
+        ArrayList<Livre> tmp = this.livres;
+        Collections.sort(tmp,Livre.Comparators.CODE);
+        System.out.print(tmp);
     }
+
+    
+    
+    
+    
     
     
 
