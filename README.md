@@ -1,9 +1,17 @@
 # Projet Library
 Java project for School
 
+Setup.
+
+git clone https://github.com/EarvinKayonga/Library.git ou  allez  à https://codeload.github.com/EarvinKayonga/Library/zip/master  pour telecharger les sources
+Ensuite ouvrir avec netbeans ou eclipse
+
+
 I - Implementation
 
 Cette implementation d'une bibliothèque comporte 4 classes et 1 interfaces :
+
+    - reset Cette fonction permet d'effacer le fichier et de le remplir à nouveau avec des valeurs.
 
 Une instance de la classe Adherent peut emprunter et rendre des instances de Livres via la classe Emprunt.
 Voici un petit descriptif du diagramme de classe

@@ -132,7 +132,7 @@ public class Livre implements Serializable{
     }
 
     public String getCode() {
-        return this.theme.toString() +"-" + this.numero;
+        return this.theme.toString() + this.numero;
     }
     
     public boolean isEmpruntable(){

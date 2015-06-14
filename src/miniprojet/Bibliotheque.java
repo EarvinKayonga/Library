@@ -75,11 +75,6 @@ public class Bibliotheque implements Serializable, Mediatheque {
     }
 
     @Override
-    public void afficheLecteursEnRetard() {
-
-    }
-
-    @Override
     public void afficheLivres() {
         System.out.println( "La Liste des livres : "+this.livres);
     }
@@ -158,8 +153,16 @@ public class Bibliotheque implements Serializable, Mediatheque {
             return;
         }
         b = this.adherents.get(this.adherents.indexOf(b));
-        b.addLivre(a);
-        this.getEmprunts().add(new Emprunt(b, a));
+        boolean t =false;
+        for(Emprunt d :this.emprunts){
+            if(d.equals(new Emprunt(b, a) )){
+                t =true;
+            }
+        }
+        if(!t){
+            b.addLivre(a);
+            this.getEmprunts().add(new Emprunt(b, a));
+        }
         
         try {
             this.save();
@@ -198,9 +201,7 @@ public class Bibliotheque implements Serializable, Mediatheque {
         output.close();
     }
     
-    public void send(){
-        
-    }
+   
 
     /**
      * @return the adherents
@@ -243,6 +244,27 @@ public class Bibliotheque implements Serializable, Mediatheque {
         tmp += "] "+"\n";
         tmp += " } " ;
         return tmp; 
+    }
+    
+    @Override
+    public void afficheLecteursEnRetard() {
+
+    }
+    
+    public void ByName(){
+        
+    }
+    
+    public void ByTitre(){
+        
+    }
+    
+    public void ByAuteur(){
+        
+    }
+    
+    public void ByCode(){
+        
     }
     
     
