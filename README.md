@@ -3,26 +3,29 @@ Java project for School
 
 I Mise en route
 
-git clone https://github.com/EarvinKayonga/Library.git ou  allez  à https://codeload.github.com/EarvinKayonga/Library/zip/master  pour telecharger les sources
-Ensuite ouvrir avec netbeans ou eclipse
-
+git clone [https://github.com/EarvinKayonga/Library.git](https://github.com/EarvinKayonga/Library.git) ou  allez  à [https://codeload.github.com/EarvinKayonga/Library/zip/master](https://codeload.github.com/EarvinKayonga/Library/zip/master)  pour telecharger les sources Ensuite ouvrir avec netbeans ou eclipse
 
 II - Implementation
 
 Cette implementation d'une bibliothèque comporte 4 classes et 1 interfaces :
 
-    - reset Cette fonction permet d'effacer le fichier et de le remplir à nouveau avec des valeurs.
 
-Une instance de la classe Adherent peut emprunter et rendre des instances de Livres via la classe Emprunt.
-Voici un petit descriptif du diagramme de classe
+      - reset
+
+
+Cette fonction permet d'effacer le fichier et de le remplir à nouveau avec des valeurs.
+
+Une instance de la classe Adherent peut emprunter et rendre des instances de Livres via la classe Emprunt. Voici un petit descriptif du diagramme de classe
 
 Une classe Adherent ( Nom, Prenom, Mail, adresse, ...) :
+
 
     Methodes:
     - getters, setters,toString,
 
 
 Une classe Livre ( Titre, Auteur, Theme, Numero, Nombre d'exemplaires, Nombre d'exemplaire disponibles) :
+
 
     Methodes:
     - getters, setters,toString,
@@ -31,13 +34,13 @@ Une classe Livre ( Titre, Auteur, Theme, Numero, Nombre d'exemplaires, Nombre d'
 
 Une classe Emprunt ( Emprunteur, Livre, Date ) :
 
+
     Methodes:
     - getters, setters, toString,
 
 
+Une classe Bibliotheque ( Liste des Adherents, Liste des emprunts, Liste des Livres) :     Cette classe est Serializable, et implemente l'interface Mediatheque
 
-Une classe Bibliotheque ( Liste des Adherents, Liste des emprunts, Liste des Livres) :
-    Cette classe est Serializable, et implemente l'interface Mediatheque
 
     Methodes:
     - getters, setters, toString, les fonctions de l'interface Mediatheque,
@@ -51,7 +54,9 @@ Une classe Bibliotheque ( Liste des Adherents, Liste des emprunts, Liste des Liv
     - ByCode(),   Affiche la liste des livres par code par ordre alphabétique
     - afficheLecteursEnRetard()  Affiche la liste des adherents en retard
 
+
 Une interface publique Mediatheque :
+
 
     Méthodes:
     - afficherAdherents(),
@@ -75,9 +80,7 @@ III - Insuffisances et Améliorations possibles
 
 L'implementation de cette application rend le reverse engineering  possible et même facile. Cela vient de la faible complexité dans son architecture
 
-De plus, le stockage est effectué avec io.ObjectOutputStream, dans le fichier "bibliotheque.txt" dans le dossier racine. Les informations sont bien sûr serialisées.
-Ce système de stockage est très discutable:
-
+De plus, le stockage est effectué avec io.ObjectOutputStream, dans le fichier "bibliotheque.txt" dans le dossier racine. Les informations sont bien sûr serialisées. Ce système de stockage est très discutable:
 - Le fichiers de stockage sont facilement corruptibles,
 - Les accès disque ne sont pas optimisés,
 - Les fichiers de stockage sont sur la machine locale et non une machine distante,
@@ -86,6 +89,4 @@ Ce système de stockage est très discutable:
 
 2) Améliorations
 
-Les fichiers de stockage devraient être en sécurité sur un serveur avec de la persistance via JPA.
-Le multiposte sera possible et le multithreading sera demandé du coté server.
-Un service Web est mieux adapté pour ce projet.
+Une application Web est mieux adapté pour ce projet. Les fichiers de stockage devraient être en sécurité sur un serveur avec de la persistance via JPA. Le multiposte et le multithreading (coté serveur pour palier aux problèmes d'accès concurrents ) seront donc possibles.
