@@ -293,25 +293,25 @@ public class Bibliotheque implements Serializable, Mediatheque {
     public void ByName(){
         ArrayList<Adherent> tmp = this.adherents;
         Collections.sort(tmp,Adherent.Comparators.NOM);
-        System.out.print(tmp);
+        System.out.println( " Adherents Par Nom:  " + tmp);
     }
     
     public void ByTitre(){
         ArrayList<Livre> tmp = this.livres;
         Collections.sort(tmp,Livre.Comparators.TITRE);
-        System.out.print(tmp);
+        System.out.println("Livres Par Titre:  " +tmp);
     }
     
     public void ByAuteur(){
          ArrayList<Livre> tmp = this.livres;
         Collections.sort(tmp,Livre.Comparators.AUTEUR);
-        System.out.print(tmp);
+        System.out.println("Livres Par Auteur:  " +tmp);
     }
     
     public void ByCode(){
         ArrayList<Livre> tmp = this.livres;
         Collections.sort(tmp,Livre.Comparators.CODE);
-        System.out.print(tmp);
+        System.out.println("Livres Par Code:  " +tmp);
     }
 
     
