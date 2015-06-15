@@ -23,26 +23,6 @@ public class Miniprojet {
     public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, ParseException {
 
         Bibliotheque example = new Bibliotheque();
-        example = reset(example);
-
-        example = new Bibliotheque(true);
-        example.afficheDate();
-        example.ByName();
-        example.ByTitre();
-        example.ByAuteur();
-        example.ByCode();
-        example.afficheLecteursEnRetard();
-        example.ajoutAdherent(new Adherent("Hawk", "Ethan", "ethan@gmail.com", "acteur", "35 rue Louis Valtics Paris", 53));
-        example.ajoutLivre(new Livre("Les rivales", "Michel Peyramaure", "ROM", 225, 5));
-
-        // Fabien emprunte le livre L'Assomoir de Zola
-        example.emprunt(example.getLivres().get(0), example.getAdherents().get(4));
-        System.out.print(example);
-
-    }
-
-    public static Bibliotheque reset(Bibliotheque example) throws IOException, ParseException {
-
         ArrayList<Adherent> adh = new ArrayList<Adherent>(); // Constitution d'une liste d'Adherents
         adh.add(new Adherent());
         adh.add(new Adherent("Fremy", "Christelle", "christelle.fremy@gmail.com", "Boulangère", "36 quai des orfèvres Paris", 23));
@@ -73,7 +53,21 @@ public class Miniprojet {
         example.emprunt(example.getLivres().get(5), example.getAdherents().get(2), date);
 
         example.save();
-        return example;
+
+        //example = new Bibliotheque(true);
+        example.afficheDate();
+        example.ByName();
+        example.ByTitre();
+        example.ByAuteur();
+        example.ByCode();
+        example.afficheLecteursEnRetard();
+        example.ajoutAdherent(new Adherent("Hawk", "Ethan", "ethan@gmail.com", "acteur", "35 rue Louis Valtics Paris", 53));
+        example.ajoutLivre(new Livre("Les rivales", "Michel Peyramaure", "ROM", 225, 5));
+
+        // Raffaele emprunte le livre L'Assomoir de Zola
+        example.emprunt(example.getLivres().get(0), example.getAdherents().get(4));
+
+        System.out.println(example);
 
     }
 

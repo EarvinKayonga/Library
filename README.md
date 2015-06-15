@@ -10,12 +10,6 @@ II - Implementation
 
 Cette implementation d'une bibliothèque comporte 4 classes et 1 interfaces :
 
-
-      - reset
-
-
-Cette fonction permet d'effacer le fichier et de le remplir à nouveau avec des valeurs.
-
 Une instance de la classe Adherent peut emprunter et rendre des instances de Livres via la classe Emprunt. Voici un petit descriptif du diagramme de classe
 
 Une classe Adherent ( Nom, Prenom, Mail, adresse, ...) :

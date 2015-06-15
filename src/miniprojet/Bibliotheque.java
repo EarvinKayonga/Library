@@ -5,7 +5,6 @@
  */
 package miniprojet;
 
-import static com.oracle.jrockit.jfr.ContentType.Timestamp;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -36,22 +34,21 @@ public class Bibliotheque implements Serializable, Mediatheque {
         this.emprunts = new ArrayList<Emprunt>();
     }
 
-    public Bibliotheque(boolean val) throws FileNotFoundException, IOException, ClassNotFoundException  {
+    public Bibliotheque(boolean val) throws FileNotFoundException, IOException, ClassNotFoundException {
         //load from a file
         ObjectInputStream in = new ObjectInputStream(
                 new FileInputStream("bibliotheque.txt"));
         Object t = in.readObject();
         if (t instanceof Bibliotheque) {
-             Bibliotheque b= (Bibliotheque) t;
-             this.adherents = b.getAdherents();
-             this.livres = b.getLivres();
-             this.emprunts = b.getEmprunts();
+            Bibliotheque b = (Bibliotheque) t;
+            this.adherents = b.getAdherents();
+            this.livres = b.getLivres();
+            this.emprunts = b.getEmprunts();
         } else {
             System.out.println("Erreur");
         }
         in.close();
-        
-        
+
     }
 
     public Bibliotheque(ArrayList<Adherent> adherents, ArrayList<Livre> livres, ArrayList<Emprunt> emprunts) {
@@ -59,37 +56,35 @@ public class Bibliotheque implements Serializable, Mediatheque {
         this.livres = livres;
         this.emprunts = emprunts;
     }
-    
-    
 
     @Override
     public void recherche() {
 
     }
 
-    public void updateLivre(Livre a,Livre old) {
+    public void updateLivre(Livre a, Livre old) {
         int index = this.livres.indexOf(old);
         this.livres.add(index, a);
     }
 
-    public void updateAdherent(Adherent nouveau, Adherent old ) {
+    public void updateAdherent(Adherent nouveau, Adherent old) {
         int index = this.adherents.indexOf(old);
         this.adherents.add(index, nouveau);
     }
 
     @Override
     public void afficheLivres() {
-        System.out.println( "La Liste des livres : "+this.livres);
+        System.out.println("La Liste des livres : " + this.livres);
     }
 
     @Override
     public void afficherAdherents() {
-        System.out.println( "La Liste des adhérents : "+this.adherents);
+        System.out.println("La Liste des adhérents : " + this.adherents);
     }
 
     @Override
     public void afficheDate() {
-        System.out.println("La date courante :" +new Date());
+        System.out.println("La date courante :" + new Date());
     }
 
     @Override
@@ -156,24 +151,24 @@ public class Bibliotheque implements Serializable, Mediatheque {
             return;
         }
         b = this.adherents.get(this.adherents.indexOf(b));
-        boolean t =false;
-        for(Emprunt d :this.emprunts){
-            if(d.equals(new Emprunt(b, a) )){
-                t =true;
+        boolean t = false;
+        for (Emprunt d : this.emprunts) {
+            if (d.equals(new Emprunt(b, a))) {
+                t = true;
             }
         }
-        if(!t){
+        if (!t) {
             b.addLivre(a);
             this.getEmprunts().add(new Emprunt(b, a));
         }
-        
+
         try {
             this.save();
         } catch (IOException ex) {
             Logger.getLogger(Bibliotheque.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void emprunt(Livre a, Adherent b, Date c) {
         if (!this.adherents.contains(b)) {
             this.ajoutAdherent(b);
@@ -181,17 +176,18 @@ public class Bibliotheque implements Serializable, Mediatheque {
             return;
         }
         b = this.adherents.get(this.adherents.indexOf(b));
-        boolean t =false;
-        for(Emprunt d :this.emprunts){
-            if(d.equals(new Emprunt(b, a) )){
-                t =true;
+        
+        boolean t = false;
+        for (Emprunt d : this.emprunts) {
+            if (d.equals(new Emprunt(b, a))) {
+                t = true;
             }
         }
-        if(!t){
+        if ((!t)&&(!b.getLivres().contains(a))) {
             b.addLivre(a);
             this.getEmprunts().add(new Emprunt(b, a, c));
         }
-        
+
         try {
             this.save();
         } catch (IOException ex) {
@@ -228,8 +224,6 @@ public class Bibliotheque implements Serializable, Mediatheque {
 
         output.close();
     }
-    
-   
 
     /**
      * @return the adherents
@@ -256,69 +250,62 @@ public class Bibliotheque implements Serializable, Mediatheque {
     public String toString() {
         String tmp = "Bibliotheque {  " + "\n";
         tmp += "Livres [ " + "\n";
-        for(Livre a : this.livres){
-            tmp += a.toString()+ "\n";
+        for (Livre a : this.livres) {
+            tmp += a.toString() + "\n";
         }
-        tmp += " ]"+ "\n";
+        tmp += " ]" + "\n";
         tmp += "Adherents [" + "\n";
-        for(Adherent a : this.adherents){
-            tmp += a.toString()+ "\n";
+        for (Adherent a : this.adherents) {
+            tmp += a.toString() + "\n";
         }
-        tmp += "] "+"\n";
+        tmp += "] " + "\n";
         tmp += "Emprunts [" + "\n";
-        for(Emprunt a : this.emprunts){
-            tmp += a.toString()+ "\n";
+        for (Emprunt a : this.emprunts) {
+            tmp += a.toString() + "\n";
         }
-        tmp += "] "+"\n";
-        tmp += " } " ;
-        return tmp; 
+        tmp += "] " + "\n";
+        tmp += " } ";
+        return tmp;
     }
-    
+
     @Override
     public void afficheLecteursEnRetard() {
         ArrayList<Emprunt> ret = new ArrayList<>();
-        for(Emprunt a:this.emprunts){
+        for (Emprunt a : this.emprunts) {
             Date date = new Date();
-            if( true){
+            if (  ((date.getTime() - a.getDate().getTime())/ 86400000 )>= 15 ) {
                 ret.add(a);
             }
         }
         String tmp = " Les Lecteurs en Retards sont : ";
-        for(Emprunt a : this.emprunts){
+        for (Emprunt a : ret) {
             tmp += a.getEmprunteur().toString();
         }
-        //System.out.print(tmp);
-    }
-    
-    public void ByName(){
-        ArrayList<Adherent> tmp = this.adherents;
-        Collections.sort(tmp,Adherent.Comparators.NOM);
-        System.out.println( " Adherents Par Nom:  " + tmp);
-    }
-    
-    public void ByTitre(){
-        ArrayList<Livre> tmp = this.livres;
-        Collections.sort(tmp,Livre.Comparators.TITRE);
-        System.out.println("Livres Par Titre:  " +tmp);
-    }
-    
-    public void ByAuteur(){
-         ArrayList<Livre> tmp = this.livres;
-        Collections.sort(tmp,Livre.Comparators.AUTEUR);
-        System.out.println("Livres Par Auteur:  " +tmp);
-    }
-    
-    public void ByCode(){
-        ArrayList<Livre> tmp = this.livres;
-        Collections.sort(tmp,Livre.Comparators.CODE);
-        System.out.println("Livres Par Code:  " +tmp);
+        System.out.print(tmp);
     }
 
-    
-    
-    
-    
-    
-    
+    public void ByName() {
+        ArrayList<Adherent> tmp = this.adherents;
+        Collections.sort(tmp, Adherent.Comparators.NOM);
+        System.out.println(" Adherents Par Nom:  " + tmp);
+    }
+
+    public void ByTitre() {
+        ArrayList<Livre> tmp = this.livres;
+        Collections.sort(tmp, Livre.Comparators.TITRE);
+        System.out.println("Livres Par Titre:  " + tmp);
+    }
+
+    public void ByAuteur() {
+        ArrayList<Livre> tmp = this.livres;
+        Collections.sort(tmp, Livre.Comparators.AUTEUR);
+        System.out.println("Livres Par Auteur:  " + tmp);
+    }
+
+    public void ByCode() {
+        ArrayList<Livre> tmp = this.livres;
+        Collections.sort(tmp, Livre.Comparators.CODE);
+        System.out.println("Livres Par Code:  " + tmp);
+    }
 
 }
